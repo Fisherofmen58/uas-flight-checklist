@@ -195,7 +195,7 @@
   <div class="header-top">
     <div>
       <h1>UAS Flight Checklists</h1>
-      <p>Free Part 107 Preflight Checklist · v1.0</p>
+      <p>Free Part 107 Preflight Checklist · v1.2</p>
     </div>
     <button class="reset-all" onclick="resetCurrent()">Reset</button>
   </div>
@@ -227,6 +227,11 @@
   </div>
   <div id="wx-body">
     <div class="wx-status">Locating...</div>
+  </div>
+  <div class="wx-tfr-row" style="margin-top:10px;">
+    <a class="wx-tfr" href="https://tfr.faa.gov/tfr2/list.html" target="_blank">⚠️ TFRs — FAA.gov</a>
+    <a class="wx-notam" href="https://notams.aim.faa.gov/notamSearch/" target="_blank">📋 NOTAMs — AIM</a>
+    <a class="wx-radar" href="https://radar.weather.gov" target="_blank">🌧 Radar — NWS</a>
   </div>
 </div>
 
@@ -681,7 +686,7 @@ async function loadWeather() {
   body.innerHTML = '<div class="wx-status">Loading...</div>';
 
   if (!OWM_KEY || OWM_KEY === 'YOUR_API_KEY_HERE') {
-    body.innerHTML = `<div class="wx-key-prompt">⚠️ Add your API keys to enable live weather.<br>1. <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap</a> (free) — paste key in OWM_KEY<br>2. <a href="https://checkwx.com" target="_blank">CheckWX</a> (free) — paste key in CHECKWX_KEY</div>`;
+    body.innerHTML = `<div class="wx-key-prompt">⚠️ Add your API keys to enable live weather and Preflight Conditions panel.<br>1. <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap</a> (free) — paste key in OWM_KEY<br>2. <a href="https://checkwx.com" target="_blank">CheckWX</a> (free) — paste key in CHECKWX_KEY</div>`;
     return;
   }
 
@@ -754,11 +759,7 @@ async function loadWeather() {
         </div>
         <div class="wx-sun">🌅 Sunrise ${new Date(wx.sys.sunrise*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})} &nbsp;·&nbsp; 🌇 Sunset ${new Date(wx.sys.sunset*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</div>
         <div class="wx-updated">Updated ${now} · ${wx.name}</div>
-        <div class="wx-tfr-row">
-          <a class="wx-tfr" href="https://tfr.faa.gov/tfr2/list.html" target="_blank">⚠️ TFRs — FAA.gov</a>
-          <a class="wx-notam" href="https://notams.aim.faa.gov/notamSearch/" target="_blank">📋 NOTAMs — AIM</a>
-          <a class="wx-radar" href="https://radar.weather.gov" target="_blank">🌧 Radar — NWS</a>
-        </div>
+
       `;
     } catch (e) {
       body.innerHTML = `<div class="wx-status wx-alert">Weather unavailable: ${e.message}</div>`;
