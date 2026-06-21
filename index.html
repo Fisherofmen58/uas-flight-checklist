@@ -195,7 +195,7 @@
   <div class="header-top">
     <div>
       <h1>UAS Flight Checklists</h1>
-      <p>Free Part 107 Preflight Checklist · v1.2</p>
+      <p>Free Part 107 Preflight Checklist · v1.3</p>
     </div>
     <button class="reset-all" onclick="resetCurrent()">Reset</button>
   </div>
@@ -584,6 +584,12 @@ function windArrow(deg) {
   const idx = Math.round(goingTo / 45) % 8;
   return dirs[idx];
 }
+
+function windCardinal(deg) {
+  const cards = ['N','NE','E','SE','S','SW','W','NW','N'];
+  const idx = Math.round(deg / 45) % 8;
+  return 'From ' + cards[idx];
+}
 function ceilingColor(ft) {
   if (ft < 500) return 'wx-alert';
   if (ft < 1000) return 'wx-warn';
@@ -739,7 +745,7 @@ async function loadWeather() {
           <div class="wx-item">
             <div class="wx-label">Wind</div>
             <div class="wx-value ${windColor(windMph)}">${windMph}${gustMph ? ' / ' + gustMph : ''} mph ${windArrow(wx.wind.deg)}</div>
-            <div class="wx-sub">${gustMph ? 'Sustained / Gusts' : 'No gusts reported'}</div>
+            <div class="wx-sub">${gustMph ? 'Sustained / Gusts' : 'No gusts reported'} · ${windCardinal(wx.wind.deg)}</div>
           </div>
           <div class="wx-item">
             <div class="wx-label">Cloud Ceiling ${stationId ? '<span style="font-weight:400;opacity:0.7">· ' + stationId + '</span>' : ''}</div>
