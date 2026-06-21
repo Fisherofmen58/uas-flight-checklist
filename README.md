@@ -1,4 +1,4 @@
-# UAS Flight Checklists
+ UAS Flight Checklists
 
 A free, mobile-friendly Part 107 preflight checklist web app with live weather conditions built in. No app to download, no subscription required — just open it in any browser and fly.
 
@@ -24,7 +24,7 @@ A free, mobile-friendly Part 107 preflight checklist web app with live weather c
 
 ## Setup
 
-The checklist works without any API keys, but the live weather panel requires two free API keys.
+The checklist works without any API keys, but the live weather and Preflight Conditions panel requires two free API keys.
 
 ### Step 1 — Get your free API keys
 
